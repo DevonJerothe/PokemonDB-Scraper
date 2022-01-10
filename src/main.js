@@ -42,14 +42,20 @@ Apify.main(async () => {
 
             if (userData.label === 'list'){
 
+                log.info('Fetching List Items')
+
                 const pokemonLinks = $('span[class="infocard-lg-img"]a[href*="/pokedex/"]')
                     .map((_, link) => $(link).attr('href'))
                     .get()
                     .filter((s) => s);
 
+                log.info(`No Items Found`)
+
                 if (pokemonLinks.length === 0) {
                     return;
                 }
+
+                log.info(`Fetched ${pokemonLinks.length} items`)
 
                 let queuedLinks = 0;
 
