@@ -3,15 +3,19 @@
     "version": "1.0.0",
     "description": "Make yourself a Pokedex",
     "dependencies": {
-        "apify": "^2.2.1"
+        "apify": "^1.2.0",
+        "querystring": "^0.2.0",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.6"
     },
     "devDependencies": {
-        "@apify/eslint-config": "^0.2.2",
-        "eslint": "^8.6.0"
+        "@apify/eslint-config": "^0.1.3",
+        "eslint": "^7.13.0"
     },
     "scripts": {
         "start": "node src/main.js",
         "test": "echo \"ERROR: No Tests Created\" && exit 1"
     },
-    "author": "Devon Jerothe"
+    "author": "Devon Jerothe",
+    "license": "ISC"
 }

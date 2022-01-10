@@ -1,0 +1,7 @@
+{
+    "name": "indeed-scraper",
+    "version": "0.1",
+    "buildTag": "latest",
+    "env": null,
+    "template": "basic_crawler"
+}
