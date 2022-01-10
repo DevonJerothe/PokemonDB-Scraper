@@ -44,14 +44,15 @@ Apify.main(async () => {
 
                 log.info('Fetching List Items')
 
-                const pokemonLinks = $('span[class="infocard-lg-img"]a[href*="/pokedex/"]')
-                    .map((_, link) => $(link).attr('href'))
-                    .get()
-                    .filter((s) => s);
+                // const pokemonLinks = $('span[class="infocard-lg-img"]a[href*="/pokedex/"]')
+                //     .map((_, link) => $(link).attr('href'))
+                //     .get()
+                //     .filter((s) => s);
 
-                log.info(`No Items Found`)
+                const pokemonLinks = $('.infocard-list .infocard .infocard-lg-img a[href]').get();
 
                 if (pokemonLinks.length === 0) {
+                    log.info(`No Items Found`)
                     return;
                 }
 
