@@ -1,0 +1,17 @@
+{
+    "name": "PokemonDB-Scraper",
+    "version": "1.0.0",
+    "description": "Make yourself a Pokedex",
+    "dependencies": {
+        "apify": "^2.2.1"
+    },
+    "devDependencies": {
+        "@apify/eslint-config": "^0.2.2",
+        "eslint": "^8.6.0"
+    },
+    "scripts": {
+        "start": "node src/main.js",
+        "test": "echo \"ERROR: No Tests Created\" && exit 1"
+    },
+    "author": "Devon Jerothe"
+}

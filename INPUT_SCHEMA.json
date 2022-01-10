@@ -1,0 +1,14 @@
+{
+    "title": "Input schema for Actor PokemonDB Scraper",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "proxyConfiguration": {
+            "title": "Proxy configuration",
+            "type": "object",
+            "editor": "proxy",
+            "description": "The best option is usually Automatic proxy. But you can also use your own proxies or no proxy",
+            "prefill": { "useApifyProxy": true }
+        }
+    }
+}
