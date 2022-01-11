@@ -3,8 +3,29 @@ const { log, sleep } = Apify.utils;
 log.setLevel(log.LEVELS.DEBUG)
 
 function extractData(request, $) {
+
+    const typeValues = $('.vitals-table tbody th:contains("Type")')
+        .next('td')
+        .find('a')
+        .map((_, monType) => $(monType).text())
+        .get()
+        .filter((s) => s);
+
     return {
-        url: request.url
+        url: request.url,
+        dexNumber: $('.vitals-table tbody th:contains("National")')
+            .next('td')
+            .find('strong')
+            .text(),
+        name: $('.main-content h1')
+            .first()
+            .text(),
+        img: $('.tabset-basics .sv-tabs-panel-list .grid-row .text-center')
+            .children('p')
+            .first()
+            .find('a[href]')
+            .attr('href'),
+        types: typeValues
     }
 }
 
@@ -44,12 +65,10 @@ Apify.main(async () => {
 
                 log.info('Fetching List Items')
 
-                // const pokemonLinks = $('span[class="infocard-lg-img"]a[href*="/pokedex/"]')
-                //     .map((_, link) => $(link).attr('href'))
-                //     .get()
-                //     .filter((s) => s);
-
-                const pokemonLinks = $('.infocard-list .infocard .infocard-lg-img a[href]').get();
+                const pokemonLinks = $('.infocard-list .infocard .infocard-lg-img a[href]')
+                    .map((_, link) => $(link).attr('href'))
+                    .get()
+                    .filter((s) => s);
 
                 if (pokemonLinks.length === 0) {
                     log.info(`No Items Found`)
@@ -60,7 +79,7 @@ Apify.main(async () => {
 
                 let queuedLinks = 0;
 
-                for (const link in pokemonLinks) {
+                for (const link of pokemonLinks) {
                     const url = link.startsWith('https://') ? link : `https://pokemondb.net${link}`;
 
                     const rq = await requestQueue.addRequest({
